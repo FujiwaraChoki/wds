@@ -4,8 +4,8 @@ This is a project aimed at simulating the software and behaviour of a drone, spe
 
 ## Features
 
-- [ ] Detect movement
-- [ ] Detect sound
+- [x] Detect movement
+- [x] Detect sound
 
 ## How it works
 
@@ -48,4 +48,3 @@ ulimit -n 2048
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
-

@@ -2,7 +2,7 @@ import cv2
 import time
 
 class MOD:
-    def __init__(self, cam_index: int = 0, on_detect = None, timeout: int = 2):
+    def __init__(self, cam_index: int = 0, on_detect: function = lambda x, y, w, h: print(x, y, w, h), timeout: int = 2):
         # Initialize camera
         self.cap = cv2.VideoCapture(cam_index)
 
