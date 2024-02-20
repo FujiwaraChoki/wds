@@ -1,5 +1,6 @@
 import cv2
 import time
+import pyttsx3
 import pyaudio
 import asyncio
 import numpy as np
@@ -20,7 +21,6 @@ def show_available_cameras():
 
 show_available_cameras()
 camera_index = int(input(colored('Enter the camera index: ', 'magenta')))
-
 # Constants
 FORMAT = pyaudio.paInt16
 RATE = 44100
@@ -36,6 +36,8 @@ stream = audio.open(format=FORMAT, channels=1,
 
 directions = []
 
+ENGINE = pyttsx3.init()
+
 def on_detect(x, y, w, h):
   print(colored(f'Detected movement at ({x}, {y}) with width={w} and height={h}. Shooting!', 'green'))
   # New event loop
@@ -43,6 +45,8 @@ def on_detect(x, y, w, h):
   asyncio.set_event_loop(loop)
   # run without waiting to finish
   loop.run_in_executor(None, playsound, 'gunshot.mp3')
+  ENGINE.say('Opening fire.')
+  ENGINE.runAndWait()
 
 print(colored('Listening...', 'magenta'))
 
