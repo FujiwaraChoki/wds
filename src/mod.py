@@ -5,7 +5,6 @@ This module is responsible for detecting moving objects in a video stream.
 '''
 import cv2
 import numpy
-import matplotlib.pyplot as plt
 
 class MOD:
     def __init__(self, camera_index=0, on_detect=None):
