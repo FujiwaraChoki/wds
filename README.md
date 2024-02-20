@@ -36,3 +36,16 @@ To use the project, you need to run the following command:
 ```bash
 python src/main.py
 ```
+
+## FAQ
+
+If the program crashes, make sure to adjust the amount of concurrently allowed open files in your system. You can do this by running the following command:
+
+```bash
+ulimit -n 2048
+```
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
+
