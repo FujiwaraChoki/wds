@@ -8,7 +8,7 @@ import numpy
 import matplotlib.pyplot as plt
 
 class MOD:
-    def __init__(self, camera_index=0):
+    def __init__(self, camera_index=0, on_detect=None):
         '''
         Initialize the MOD class with the camera index.
         '''
@@ -76,6 +76,8 @@ class MOD:
             for contour in contours:
                 x, y, width, height = cv2.boundingRect(contour)
                 cv2.rectangle(frame, (x, y), (x + width, y + height), (123, 0, 255), 2)
+                if on_detect:
+                    on_detect(width, height, x, y)
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
 

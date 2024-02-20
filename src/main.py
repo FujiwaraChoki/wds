@@ -11,12 +11,15 @@ def show_available_cameras():
         print(f"Camera {i}: {cap.get(cv2.CAP_PROP_FRAME_WIDTH)}x{cap.get(cv2.CAP_PROP_FRAME_HEIGHT)}")
         cap.release()
 
+def on_detect(w, h, x, y):
+    print(f'Shooting Object at {x}, {y} with width {w} and height {h}')
+
 def main():
   show_available_cameras()
   camera_index = int(input('Enter the camera index: '))
 
   print(colored('Starting MOD algorithm...', 'green'))
-  mod = MOD(camera_index)
+  mod = MOD(camera_index, on_detect)
   mod.run()
   print(colored('MOD algorithm completed.', 'green'))
 
