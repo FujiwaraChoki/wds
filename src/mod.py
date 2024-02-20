@@ -1,7 +1,8 @@
 import cv2
+import time
 
 class MOD:
-    def __init__(self, cam_index: int = 0, on_detect = None):
+    def __init__(self, cam_index: int = 0, on_detect = None, timeout: int = 2):
         # Initialize camera
         self.cap = cv2.VideoCapture(cam_index)
 
@@ -11,8 +12,15 @@ class MOD:
         # Initialize on_detect callback
         self.on_detect = on_detect
 
+        # Set timeout in seconds
+        self.timeout = timeout
+
     def detect_motion(self):
+        passed_time = 0
         while True:
+            if passed_time >= self.timeout:
+                break
+
             # Capture frame-by-frame
             ret, frame = self.cap.read()
 
@@ -36,6 +44,10 @@ class MOD:
             # Break the loop when 'q' is pressed
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
+        
+            # Increment passed time by a second
+            time.sleep(1)
+            passed_time += 1
 
     def release(self):
         # Release the capture

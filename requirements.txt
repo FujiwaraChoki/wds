@@ -1,3 +1,5 @@
 opencv-python
 playsound
+pyaudio
+scipy
 numpy
