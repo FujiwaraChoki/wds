@@ -30,7 +30,7 @@ CHUNK = 1024
 audio = pyaudio.PyAudio()
 
 # Open stream
-stream = audio.open(format=FORMAT, channels=1,
+stream = audio.open(format=FORMAT, channels=1, # This might throw an error
                     rate=RATE, input=True,
                     frames_per_buffer=CHUNK)
 
