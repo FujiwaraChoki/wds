@@ -63,11 +63,10 @@ try:
         # Apply beamforming
         
         # Compute the power spectral density (PSD) of the signal
-        f, t, Sxx = signal.spectrogram(data_np, fs=RATE, nperseg=512)  # Increased resolution
+        f, t, Sxx = signal.spectrogram(data_np, fs=RATE, nperseg=512)
         
         # Set beamforming weights based on the frequency components
-        # For simplicity, we'll just use a cosine window
-        window = np.cos(np.linspace(0, np.pi, len(f)))  # Adjust window shape as needed
+        window = np.cos(np.linspace(0, np.pi, len(f)))
         
         # Apply beamforming by multiplying the PSD by the window
         Sxx_beamformed = Sxx * window[:, np.newaxis]
