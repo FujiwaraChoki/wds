@@ -76,7 +76,7 @@ class MOD:
             for contour in contours:
                 x, y, width, height = cv2.boundingRect(contour)
                 cv2.rectangle(frame, (x, y), (x + width, y + height), (123, 0, 255), 2)
-                if self.on_detect and (width != 0 and height != 0):
+                if self.on_detect and (width != 0 and height != 0) and (x != 0 and y != 0):
                     self.on_detect(width, height, x, y)
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
