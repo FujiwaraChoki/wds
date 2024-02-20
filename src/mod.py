@@ -20,13 +20,13 @@ class MOD:
         Convert the image to COLOR_BGR2RGB.
         '''
         return cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-    
+
     def _select_30_frames(self):
         '''
         Extract 30 random frames and store the selected frames in an array.
         '''
         frame_count = 0
-        
+
         while frame_count < 30:
             ret, frame = self.cap.read()
             if ret:
@@ -38,13 +38,13 @@ class MOD:
         Run the MOD algorithm.
         '''
         self._select_30_frames()
-        
+
         frame_median = numpy.median(self.selected_frames, axis=0).astype(dtype=numpy.uint8)
         frame_sample = self.selected_frames[0]
-        
+
         gray_frame_median = cv2.cvtColor(frame_median, cv2.COLOR_BGR2GRAY)
         gray_frame_sample = cv2.cvtColor(frame_sample, cv2.COLOR_BGR2GRAY)
-        
+
         bg_removed_frame = cv2.absdiff(gray_frame_sample, gray_frame_median)
 
         frame_blur = cv2.GaussianBlur(bg_removed_frame, (11, 11), 0)
@@ -61,7 +61,7 @@ class MOD:
             ret, frame = self.cap.read()
             if not ret:
                 break
-            
+
             # Converting frame to grayscale
             gray_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
             # Calculating Absolute Difference between Current Frame and Median Frame
@@ -76,7 +76,7 @@ class MOD:
             for contour in contours:
                 x, y, width, height = cv2.boundingRect(contour)
                 cv2.rectangle(frame, (x, y), (x + width, y + height), (123, 0, 255), 2)
-                if self.on_detect:
+                if self.on_detect and (width != 0 and height != 0):
                     self.on_detect(width, height, x, y)
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
