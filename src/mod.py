@@ -14,6 +14,7 @@ class MOD:
         '''
         self.cap = cv2.VideoCapture(camera_index)
         self.selected_frames = []
+        self.on_detect = on_detect
 
     def _color_convert(self, image):
         '''
@@ -76,8 +77,8 @@ class MOD:
             for contour in contours:
                 x, y, width, height = cv2.boundingRect(contour)
                 cv2.rectangle(frame, (x, y), (x + width, y + height), (123, 0, 255), 2)
-                if on_detect:
-                    on_detect(width, height, x, y)
+                if self.on_detect:
+                    self.on_detect(width, height, x, y)
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
 
