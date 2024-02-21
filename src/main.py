@@ -71,7 +71,7 @@ try:
         
         # Apply beamforming by multiplying the PSD by the window
         Sxx_beamformed = Sxx * window[:, np.newaxis]
-        
+
         # Integrate beamformed PSD over frequency
         integrated_power = np.sum(Sxx_beamformed, axis=0)
         
