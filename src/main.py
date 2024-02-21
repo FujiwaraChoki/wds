@@ -47,7 +47,7 @@ def on_detect(x, y, w, h):
   # run without waiting to finish
   loop.run_in_executor(None, playsound, 'gunshot.mp3')
   ENGINE.say('Opening fire.')
-  ENGINE.runAndWait()
+  loop.run_in_executor(None, ENGINE.runAndWait)
 
 print(colored('Listening...', 'magenta'))
 

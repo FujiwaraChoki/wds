@@ -31,7 +31,7 @@ class MOD:
             contours, _ = cv2.findContours(fgMask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
             # Draw rectangles around moving objects
-            for contour in contours:
+            for contour  in contours:
                 if cv2.contourArea(contour) > 500:
                     (x, y, w, h) = cv2.boundingRect(contour)
                     cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
