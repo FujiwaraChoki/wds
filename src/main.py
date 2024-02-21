@@ -21,6 +21,7 @@ def show_available_cameras():
 
 show_available_cameras()
 camera_index = int(input(colored('Enter the camera index: ', 'magenta')))
+
 # Constants
 FORMAT = pyaudio.paInt16
 RATE = 44100
